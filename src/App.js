@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PhotoCapture from './PhotoCapture';
 import Map from './Map';
 import './App.css';
@@ -9,6 +9,22 @@ const App = () => {
   const [coordinates, setCoordinates] = useState([]);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    // Get user's current location
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        console.error('Error getting user location:', error);
+      }
+    );
+  }, []);
 
   const handleCapture = (capturedPhotos) => {
     if (capturedPhotos.length === 4) {
@@ -49,24 +65,20 @@ const App = () => {
         <hr className='divider' />
       </div>
       {!isConfirmed && <PhotoCapture onCapture={handleCapture} />}
+      {userLocation && (
+        <div className="map-container">
+          <Map
+            userLocation={userLocation}
+            coordinates={coordinates}
+            onConfirm={handleConfirm}
+            onStartOver={handleStartOver}
+            onRetake={handleRetake}
+          />
+        </div>
+      )}
       {coordinates.length === 4 && !isConfirmed && (
         <>
-          {/* <div className="photo-gallery">
-            {coordinates.map((coord, index) => (
-              // <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
-              //   <h4>Photo {index + 1} (of 4)</h4>
-              //   <img src={coord.imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
-              // </div>
-            ))}
-          </div> */}
-          <div className="map-container">
-            <Map
-              coordinates={coordinates}
-              onConfirm={handleConfirm}
-              onStartOver={handleStartOver}
-              onRetake={handleRetake}
-            />
-          </div>
+
           <button onClick={() => handleConfirm()} disabled={coordinates.length !== 4}>Submit</button>
         </>
       )}

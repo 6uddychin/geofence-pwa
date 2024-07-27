@@ -1,9 +1,19 @@
-import React, { useRef } from 'react';
-import { MapContainer, TileLayer, Polygon, Marker, Popup } from 'react-leaflet';
+import React, { useRef, useEffect } from 'react';
+import { MapContainer, TileLayer, Polygon, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import html2canvas from 'html2canvas';
+import L from 'leaflet';
 
-const Map = ({ coordinates, onConfirm, onStartOver, onRetake }) => {
+// Fix marker icon issue by setting default icon path
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
+const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) => {
   const mapRef = useRef(null);
 
   const captureMapImage = async () => {
@@ -19,14 +29,25 @@ const Map = ({ coordinates, onConfirm, onStartOver, onRetake }) => {
     onConfirm(mapImage);
   };
 
+  function CenterMap({ center }) {
+    const map = useMap();
+    useEffect(() => {
+      if (center) {
+        map.setView(center, 13);
+      }
+    }, [center, map]);
+    return null;
+  }
+
   return (
     <div>
       <div ref={mapRef} style={{ width: '100vw', height: '50vh' }}>
-        <MapContainer center={[coordinates[0].latitude, coordinates[0].longitude]} zoom={13} style={{ width: '100%', height: '100%' }}>
+        <MapContainer center={[userLocation.latitude, userLocation.longitude]} zoom={13} style={{ width: '100%', height: '100%' }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
+          <CenterMap center={[userLocation.latitude, userLocation.longitude]} />
           {coordinates.length === 4 && (
             <Polygon positions={coordinates.map(coord => [coord.latitude, coord.longitude])}>
               {coordinates.map((coord, index) => (
@@ -48,4 +69,4 @@ const Map = ({ coordinates, onConfirm, onStartOver, onRetake }) => {
   );
 };
 
-export default Map;
+export default Map​⬤
