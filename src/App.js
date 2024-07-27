@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PhotoCapture from './PhotoCapture';
 import Map from './Map';
+import './App.css';
+import amznLogo from './assets/amzn_logo.png'; // Update the path based on your structure
 
 const App = () => {
   const [coordinates, setCoordinates] = useState([]);
@@ -27,23 +29,25 @@ const App = () => {
   };
 
   const handleRetake = (index) => {
-    // Handle retake photo at index
     setIsConfirmed(false);
     setCurrentPhoto(index + 1);
   };
 
   return (
     <div>
-      <h1>Photo Geo Logger</h1>
+      <header>
+        <img src={amznLogo} alt="Amazon Logo" />
+        <h1>Photo Geo Logger</h1>
+      </header>
       {coordinates.length < 4 && !isConfirmed && <h3>Take Photo {currentPhoto} of 4</h3>}
       {!isConfirmed && <PhotoCapture onCapture={handleCapture} />}
       {coordinates.length === 4 && !isConfirmed && (
         <>
-          <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
+          <div className="photo-gallery">
             {coordinates.map((coord, index) => (
-              <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
+              <div key={index}>
                 <h4>Photo {index + 1} (of 4)</h4>
-                <img src={coord.imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                <img src={coord.imageUrl} alt={`Photo ${index + 1}`} />
               </div>
             ))}
           </div>
@@ -53,6 +57,7 @@ const App = () => {
             onStartOver={handleStartOver}
             onRetake={handleRetake}
           />
+          <button onClick={handleConfirm} disabled={coordinates.length !== 4}>Submit</button>
         </>
       )}
     </div>

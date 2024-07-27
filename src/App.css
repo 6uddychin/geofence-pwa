@@ -36,3 +36,82 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+  height: 40px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+h3 {
+  font-size: 18px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.photo-gallery {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.photo-gallery div {
+  margin: 0 10px;
+  text-align: center;
+}
+
+.photo-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+
+button:disabled {
+  background-color: #cccccc;
+}
+
+.map-container {
+  width: 100vw;
+  height: 50vh;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.camera-button img {
+  width: 50px;
+  height: 50px;
+}

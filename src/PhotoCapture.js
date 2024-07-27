@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
+import blueCamera from './assets/blue_camera.png'; // Update the path based on your structure
+import greenCamera from './assets/green_camera.png'; // Update the path based on your structure
 
 const PhotoCapture = ({ onCapture }) => {
   const [photos, setPhotos] = useState([]);
@@ -38,7 +40,11 @@ const PhotoCapture = ({ onCapture }) => {
 
   return (
     <div>
-      {photos.length < 4 && <button onClick={() => takePhoto()}>Take Photo</button>}
+      {photos.length < 4 && (
+        <div className="camera-button" onClick={() => takePhoto()}>
+          <img src={photos.length === 0 ? blueCamera : greenCamera} alt="Take Photo" />
+        </div>
+      )}
       {photos.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto' }}>
           {photos.map((photo, index) => (
