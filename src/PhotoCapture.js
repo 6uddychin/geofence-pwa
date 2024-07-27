@@ -39,7 +39,7 @@ const PhotoCapture = ({ onCapture }) => {
       <div className="photo-gallery" style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
         {[0, 1, 2, 3].map((index) => (
           <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
-            <h4>Photo {index + 1} (of 4)</h4>
+            {/* <h4>Photo {index + 1} (of 4)</h4> */}
             <div className="camera-button" onClick={() => takePhoto(index)}>
               <img
                 src={photos[index] ? greenCamera : blueCamera}
@@ -50,18 +50,18 @@ const PhotoCapture = ({ onCapture }) => {
             {photos[index] && (
               <>
                 <img src={photos[index].imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
-                <p>Lat: {photos[index].latitude}, Lng: {photos[index].longitude}</p>
-                <button onClick={() => takePhoto(index)}>Retake Photo {index + 1}</button>
+                {/* <p>Lat: {photos[index].latitude}, Lng: {photos[index].longitude}</p> */}
+                {/* <button onClick={() => takePhoto(index)}>Retake Photo {index + 1}</button> */}
               </>
             )}
           </div>
         ))}
       </div>
-      {photos.length === 4 && (
+      {/* {photos.length === 4 && (
         <div>
           <button onClick={startOver}>Start Over</button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
