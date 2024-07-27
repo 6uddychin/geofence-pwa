@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
-import blueCamera from './assets/blue_camera.png'; // Update the path based on your structure
-import greenCamera from './assets/green_camera.png'; // Update the path based on your structure
+import blueCamera from './assets/blue_camera.png'; // Ensure this path is correct
+import greenCamera from './assets/green_camera.png'; // Ensure this path is correct
 
 const PhotoCapture = ({ onCapture }) => {
   const [photos, setPhotos] = useState([]);
@@ -23,11 +23,7 @@ const PhotoCapture = ({ onCapture }) => {
     };
 
     const newPhotos = [...photos];
-    if (index !== undefined) {
-      newPhotos[index] = photoData;
-    } else {
-      newPhotos.push(photoData);
-    }
+    newPhotos[index] = photoData;
 
     setPhotos(newPhotos);
     onCapture(newPhotos);
@@ -40,23 +36,27 @@ const PhotoCapture = ({ onCapture }) => {
 
   return (
     <div>
-      {photos.length < 4 && (
-        <div className="camera-button" onClick={() => takePhoto()}>
-          <img src={photos.length === 0 ? blueCamera : greenCamera} alt="Take Photo" />
-        </div>
-      )}
-      {photos.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'row', overflowX: 'auto' }}>
-          {photos.map((photo, index) => (
-            <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
-              <h4>Photo {index + 1} (of 4)</h4>
-              <img src={photo.imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
-              <p>Lat: {photo.latitude}, Lng: {photo.longitude}</p>
-              <button onClick={() => takePhoto(index)}>Retake Photo {index + 1}</button>
+      <div className="photo-gallery" style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
+        {[0, 1, 2, 3].map((index) => (
+          <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
+            <h4>Photo {index + 1} (of 4)</h4>
+            <div className="camera-button" onClick={() => takePhoto(index)}>
+              <img
+                src={photos[index] ? greenCamera : blueCamera}
+                alt={`Camera Icon ${index + 1}`}
+                style={{ width: '50px', height: '50px' }}
+              />
             </div>
-          ))}
-        </div>
-      )}
+            {photos[index] && (
+              <>
+                <img src={photos[index].imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                <p>Lat: {photos[index].latitude}, Lng: {photos[index].longitude}</p>
+                <button onClick={() => takePhoto(index)}>Retake Photo {index + 1}</button>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
       {photos.length === 4 && (
         <div>
           <button onClick={startOver}>Start Over</button>
