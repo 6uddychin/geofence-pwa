@@ -1,0 +1,28 @@
+0 verbose cli /Users/buddychin/.nvm/versions/node/v18.20.4/bin/node /Users/buddychin/.nvm/versions/node/v18.20.4/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.7.0
+2 info using node@v18.20.4
+3 silly config:load:file:/Users/buddychin/.nvm/versions/node/v18.20.4/lib/node_modules/npm/npmrc
+4 silly config:load:file:/Users/buddychin/Desktop/geofence-photo/photo-geo-pwa/.npmrc
+5 silly config:load:file:/Users/buddychin/.npmrc
+6 silly config:load:file:/Users/buddychin/.nvm/versions/node/v18.20.4/etc/npmrc
+7 verbose title npm exec cap init photo-geo-pwa com.github.buddychin.photo-pwa
+8 verbose argv "exec" "--" "cap" "init" "photo-geo-pwa" "com.github.buddychin.photo-pwa"
+9 verbose logfile logs-max:10 dir:/Users/buddychin/.npm/_logs/2024-07-27T17_46_24_324Z-
+10 verbose logfile /Users/buddychin/.npm/_logs/2024-07-27T17_46_24_324Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+14 http fetch GET 200 https://registry.npmjs.org/cap 336ms (cache miss)
+15 verbose stack Error: could not determine executable to run
+15 verbose stack     at getBinFromManifest (/Users/buddychin/.nvm/versions/node/v18.20.4/lib/node_modules/npm/node_modules/libnpmexec/lib/get-bin-from-manifest.js:17:23)
+15 verbose stack     at exec (/Users/buddychin/.nvm/versions/node/v18.20.4/lib/node_modules/npm/node_modules/libnpmexec/lib/index.js:183:15)
+15 verbose stack     at async module.exports (/Users/buddychin/.nvm/versions/node/v18.20.4/lib/node_modules/npm/lib/cli/entry.js:74:5)
+16 verbose pkgid cap@0.2.1
+17 verbose cwd /Users/buddychin/Desktop/geofence-photo/photo-geo-pwa
+18 verbose Darwin 23.5.0
+19 verbose node v18.20.4
+20 verbose npm  v10.7.0
+21 error could not determine executable to run
+22 verbose exit 1
+23 verbose code 1
+24 error A complete log of this run can be found in: /Users/buddychin/.npm/_logs/2024-07-27T17_46_24_324Z-debug-0.log
