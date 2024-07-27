@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/geofence-pwa/static/css/main.323d7611.css",
-    "main.js": "/geofence-pwa/static/js/main.fb2bf097.js",
+    "main.js": "/geofence-pwa/static/js/main.6b0fa3b1.js",
     "static/js/312.fe849f70.chunk.js": "/geofence-pwa/static/js/312.fe849f70.chunk.js",
     "static/js/453.92c9cb0f.chunk.js": "/geofence-pwa/static/js/453.92c9cb0f.chunk.js",
     "index.html": "/geofence-pwa/index.html",
     "main.323d7611.css.map": "/geofence-pwa/static/css/main.323d7611.css.map",
-    "main.fb2bf097.js.map": "/geofence-pwa/static/js/main.fb2bf097.js.map",
+    "main.6b0fa3b1.js.map": "/geofence-pwa/static/js/main.6b0fa3b1.js.map",
     "312.fe849f70.chunk.js.map": "/geofence-pwa/static/js/312.fe849f70.chunk.js.map",
     "453.92c9cb0f.chunk.js.map": "/geofence-pwa/static/js/453.92c9cb0f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.323d7611.css",
-    "static/js/main.fb2bf097.js"
+    "static/js/main.6b0fa3b1.js"
   ]
 }

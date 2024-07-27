@@ -5,12 +5,14 @@ import Map from './Map';
 const App = () => {
   const [coordinates, setCoordinates] = useState([]);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState(1);
 
   const handleCapture = (photos) => {
     if (photos.length === 4) {
-      setCoordinates(photos.map(photo => ({ latitude: photo.latitude, longitude: photo.longitude })));
+      setCoordinates(photos.map(photo => ({ ...photo, latitude: photo.latitude, longitude: photo.longitude })));
       setIsConfirmed(false);
     }
+    setCurrentPhoto(photos.length + 1);
   };
 
   const handleConfirm = () => {
@@ -21,16 +23,19 @@ const App = () => {
   const handleStartOver = () => {
     setCoordinates([]);
     setIsConfirmed(false);
+    setCurrentPhoto(1);
   };
 
   const handleRetake = (index) => {
     // Handle retake photo at index
     setIsConfirmed(false);
+    setCurrentPhoto(index + 1);
   };
 
   return (
     <div>
       <h1>Photo Geo Logger</h1>
+      {coordinates.length < 4 && !isConfirmed && <h3>Take Photo {currentPhoto} of 4</h3>}
       {!isConfirmed && <PhotoCapture onCapture={handleCapture} />}
       {coordinates.length === 4 && !isConfirmed && (
         <>
