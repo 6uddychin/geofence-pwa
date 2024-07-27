@@ -33,12 +33,22 @@ const App = () => {
       <h1>Photo Geo Logger</h1>
       {!isConfirmed && <PhotoCapture onCapture={handleCapture} />}
       {coordinates.length === 4 && !isConfirmed && (
-        <Map
-          coordinates={coordinates}
-          onConfirm={handleConfirm}
-          onStartOver={handleStartOver}
-          onRetake={handleRetake}
-        />
+        <>
+          <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
+            {coordinates.map((coord, index) => (
+              <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
+                <h4>Photo {index + 1} (of 4)</h4>
+                <img src={coord.imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+              </div>
+            ))}
+          </div>
+          <Map
+            coordinates={coordinates}
+            onConfirm={handleConfirm}
+            onStartOver={handleStartOver}
+            onRetake={handleRetake}
+          />
+        </>
       )}
     </div>
   );

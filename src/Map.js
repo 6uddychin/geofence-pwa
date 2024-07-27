@@ -1,10 +1,11 @@
+import React from 'react';
 import { MapContainer, TileLayer, Polygon, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const Map = ({ coordinates, onConfirm, onStartOver, onRetake }) => {
   return (
-    <div>
-      <MapContainer center={[coordinates[0].latitude, coordinates[0].longitude]} zoom={13} style={{ height: '400px', width: '100%' }}>
+    <div style={{ width: '100vw', height: '50vh' }}>
+      <MapContainer center={[coordinates[0].latitude, coordinates[0].longitude]} zoom={13} style={{ width: '100%', height: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
