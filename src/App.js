@@ -51,14 +51,14 @@ const App = () => {
       {!isConfirmed && <PhotoCapture onCapture={handleCapture} />}
       {coordinates.length === 4 && !isConfirmed && (
         <>
-          <div className="photo-gallery">
+          {/* <div className="photo-gallery">
             {coordinates.map((coord, index) => (
               // <div key={index} style={{ margin: '0 10px', textAlign: 'center' }}>
               //   <h4>Photo {index + 1} (of 4)</h4>
               //   <img src={coord.imageUrl} alt={`Photo ${index + 1}`} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
               // </div>
             ))}
-          </div>
+          </div> */}
           <div className="map-container">
             <Map
               coordinates={coordinates}
