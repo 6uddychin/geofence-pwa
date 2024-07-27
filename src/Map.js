@@ -69,4 +69,4 @@ const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) =>
   );
 };
 
-export default Map​⬤
+export default Map;
