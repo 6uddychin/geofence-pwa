@@ -10,6 +10,7 @@ const App = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const [zoomIn, setZoomIn] = useState(false);
 
   useEffect(() => {
     // Get user's current location
@@ -27,10 +28,14 @@ const App = () => {
   }, []);
 
   const handleCapture = (capturedPhotos) => {
-    setCoordinates(capturedPhotos.map(photo => ({ ...photo, latitude: photo.latitude, longitude: photo.longitude })));
+    const updatedCoordinates = capturedPhotos.map(photo => ({ ...photo, latitude: photo.latitude, longitude: photo.longitude }));
+    setCoordinates(updatedCoordinates);
     setPhotos(capturedPhotos);
     if (capturedPhotos.length === 4) {
+      setZoomIn(true);
       setIsConfirmed(false);
+    } else {
+      setZoomIn(false);
     }
   };
 
@@ -44,10 +49,12 @@ const App = () => {
     setCoordinates([]);
     setPhotos([]);
     setIsConfirmed(false);
+    setZoomIn(false);
   };
 
   const handleRetake = (index) => {
     setIsConfirmed(false);
+    setZoomIn(false);
   };
 
   return (
@@ -73,6 +80,7 @@ const App = () => {
             onConfirm={handleConfirm}
             onStartOver={handleStartOver}
             onRetake={handleRetake}
+            zoomIn={zoomIn}
           />
         </div>
       )}
