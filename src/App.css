@@ -1,4 +1,22 @@
-/* Existing App.css */
+/* Ensure the body and app container take full width */
+body, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Make sure the map container takes the full width of the screen */
+.map-container {
+  width: 100vw;
+  height: 50vh;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Existing CSS */
 .App {
   text-align: center;
 }
@@ -133,15 +151,6 @@ button {
 
 button:disabled {
   background-color: #cccccc;
-}
-
-.map-container {
-  width: 100vw;
-  height: 50vh;
-  margin-top: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 .camera-button img {

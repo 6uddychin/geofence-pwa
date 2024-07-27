@@ -48,7 +48,7 @@ const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) =>
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <CenterMap center={[userLocation.latitude, userLocation.longitude]} />
-          {coordinates.length === 4 && (
+          {coordinates.length > 0 && (
             <Polygon positions={coordinates.map(coord => [coord.latitude, coord.longitude])}>
               {coordinates.map((coord, index) => (
                 <Marker key={index} position={[coord.latitude, coord.longitude]}>

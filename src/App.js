@@ -27,9 +27,9 @@ const App = () => {
   }, []);
 
   const handleCapture = (capturedPhotos) => {
+    setCoordinates(capturedPhotos.map(photo => ({ ...photo, latitude: photo.latitude, longitude: photo.longitude })));
+    setPhotos(capturedPhotos);
     if (capturedPhotos.length === 4) {
-      setCoordinates(capturedPhotos.map(photo => ({ ...photo, latitude: photo.latitude, longitude: photo.longitude })));
-      setPhotos(capturedPhotos);
       setIsConfirmed(false);
     }
   };
@@ -51,7 +51,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="App">
       <header>
         <img src={amznLogo} alt="Amazon Logo" />
         <h1>Photo Geo Logger</h1>
@@ -77,10 +77,7 @@ const App = () => {
         </div>
       )}
       {coordinates.length === 4 && !isConfirmed && (
-        <>
-
-          <button onClick={() => handleConfirm()} disabled={coordinates.length !== 4}>Submit</button>
-        </>
+        <button onClick={() => handleConfirm()} disabled={coordinates.length !== 4}>Submit</button>
       )}
     </div>
   );
