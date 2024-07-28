@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) => {
+const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake, zoomIn }) => {
   const mapRef = useRef(null);
 
   const captureMapImage = async () => {
@@ -39,6 +39,17 @@ const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) =>
     return null;
   }
 
+  function ZoomMap({ zoomIn }) {
+    const map = useMap();
+    useEffect(() => {
+      if (zoomIn) {
+        const currentZoom = map.getZoom();
+        map.setZoom(currentZoom + 4);
+      }
+    }, [zoomIn, map]);
+    return null;
+  }
+
   return (
     <div>
       <div ref={mapRef} style={{ width: '100vw', height: '50vh' }}>
@@ -48,6 +59,7 @@ const Map = ({ userLocation, coordinates, onConfirm, onStartOver, onRetake }) =>
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           <CenterMap center={[userLocation.latitude, userLocation.longitude]} />
+          <ZoomMap zoomIn={zoomIn} />
           {coordinates.length > 0 && (
             <Polygon positions={coordinates.map(coord => [coord.latitude, coord.longitude])}>
               {coordinates.map((coord, index) => (
